@@ -2,6 +2,7 @@ package com.fauzangifari.core.data.source.remote.retrofit
 
 import com.fauzangifari.core.data.source.remote.response.AnimeResponse
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -20,5 +21,10 @@ interface ApiService {
     suspend fun getAnimeSearch(
         @Query("q") query: String,
         @Query("sort") sort: String = "asc"
+    ): AnimeResponse
+
+    @GET("anime/{animeId}")
+    suspend fun getAnimeById(
+        @Path("animeId") animeId: Int
     ): AnimeResponse
 }

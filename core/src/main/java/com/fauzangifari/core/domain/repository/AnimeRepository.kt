@@ -15,4 +15,8 @@ interface AnimeRepository {
         query: String,
         sort: String = "asc"
     ): AnimeResponse
+
+    suspend fun getAnimeById(
+        animeId: Int
+    ): AnimeResponse
 }
