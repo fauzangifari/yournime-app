@@ -15,4 +15,10 @@ interface ApiService {
         @Query("filter") filter: String? = null,
         @Query("rating") rating: String? = null
     ): AnimeResponse
+
+    @GET("anime")
+    suspend fun getAnimeSearch(
+        @Query("q") query: String,
+        @Query("sort") sort: String = "asc"
+    ): AnimeResponse
 }

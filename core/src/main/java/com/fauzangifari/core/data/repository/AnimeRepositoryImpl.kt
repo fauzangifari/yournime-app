@@ -20,4 +20,11 @@ class AnimeRepositoryImpl @Inject constructor(
     ): AnimeResponse {
         return apiService.getTopAnime(type = type, filter = filter, rating = rating)
     }
+
+    override suspend fun getAnimeSearch(
+        query: String,
+        sort: String
+    ): AnimeResponse {
+        return apiService.getAnimeSearch(query = query, sort = sort)
+    }
 }

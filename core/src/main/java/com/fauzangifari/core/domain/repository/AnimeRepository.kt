@@ -10,4 +10,9 @@ interface AnimeRepository {
         filter: String? = null,
         rating: String? = null
     ): AnimeResponse
+
+    suspend fun getAnimeSearch(
+        query: String,
+        sort: String = "asc"
+    ): AnimeResponse
 }
