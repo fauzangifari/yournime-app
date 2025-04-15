@@ -293,7 +293,7 @@ data class DataItem(
 	val status: String? = null,
 
 	@field:SerializedName("demographics")
-	val demographics: List<String?>? = null
+	val demographics: List<DemographicsItem?>? = null
 ) : Parcelable
 
 @Parcelize

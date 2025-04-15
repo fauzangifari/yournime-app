@@ -27,4 +27,8 @@ interface ApiService {
     suspend fun getAnimeById(
         @Path("animeId") animeId: Int
     ): AnimeResponse
+
+
+    @GET("seasons/upcoming")
+    suspend fun getAnimeUpcoming(): AnimeResponse
 }

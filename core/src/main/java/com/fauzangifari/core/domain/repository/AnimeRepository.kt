@@ -19,4 +19,6 @@ interface AnimeRepository {
     suspend fun getAnimeById(
         animeId: Int
     ): AnimeResponse
+
+    suspend fun getAnimeUpcoming(): AnimeResponse
 }

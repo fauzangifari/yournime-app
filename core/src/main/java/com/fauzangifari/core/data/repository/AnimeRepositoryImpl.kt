@@ -31,4 +31,8 @@ class AnimeRepositoryImpl @Inject constructor(
     override suspend fun getAnimeById(animeId: Int): AnimeResponse {
         return apiService.getAnimeById(animeId = animeId)
     }
+
+    override suspend fun getAnimeUpcoming(): AnimeResponse {
+        return apiService.getAnimeUpcoming()
+    }
 }
