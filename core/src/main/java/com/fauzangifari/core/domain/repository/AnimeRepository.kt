@@ -1,6 +1,7 @@
 package com.fauzangifari.core.domain.repository
 
 import com.fauzangifari.core.data.source.remote.response.AnimeResponse
+import com.fauzangifari.core.data.source.remote.response.DetailAnimeResponse
 
 interface AnimeRepository {
     suspend fun getAllAnime(): AnimeResponse
@@ -18,7 +19,7 @@ interface AnimeRepository {
 
     suspend fun getAnimeById(
         animeId: Int
-    ): AnimeResponse
+    ): DetailAnimeResponse
 
     suspend fun getAnimeUpcoming(): AnimeResponse
 }

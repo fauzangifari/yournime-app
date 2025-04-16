@@ -15,5 +15,9 @@ data class Anime(
     val synopsis: String,
     val background: String,
     val season: String,
-    val genre: List<String>
+    val genre: List<Genre>,
+    val rank: Int,
+    val popularity: Int,
+    val duration: String,
+    val members : Int,
 )

@@ -395,3 +395,4 @@ data class Aired(
 	@field:SerializedName("to")
 	val to: String? = null
 ) : Parcelable
+

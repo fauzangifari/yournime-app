@@ -2,6 +2,7 @@ package com.fauzangifari.core.utils
 
 import com.fauzangifari.core.data.source.remote.response.DataItem
 import com.fauzangifari.core.domain.model.Anime
+import com.fauzangifari.core.domain.model.Genre
 
 fun DataItem.toDomain(): Anime {
     return Anime(
@@ -19,6 +20,17 @@ fun DataItem.toDomain(): Anime {
         synopsis = this.synopsis.orEmpty(),
         background = this.background.orEmpty(),
         season = this.season.orEmpty(),
-        genre = this.genres?.map { it?.name.orEmpty() } ?: emptyList()
+        genre = this.genres?.map { genre ->
+            Genre(
+                malId = genre?.malId ?: 0,
+                type = genre?.type.orEmpty(),
+                name = genre?.name.orEmpty(),
+                url = genre?.url.orEmpty(),
+            )
+        } ?: emptyList(),
+        rank = this.rank ?: 0,
+        popularity = this.popularity ?: 0,
+        duration = this.duration.orEmpty(),
+        members = this.members ?: 0,
     )
 }

@@ -1,6 +1,7 @@
 package com.fauzangifari.core.data.source.remote.retrofit
 
 import com.fauzangifari.core.data.source.remote.response.AnimeResponse
+import com.fauzangifari.core.data.source.remote.response.DetailAnimeResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -26,7 +27,7 @@ interface ApiService {
     @GET("anime/{animeId}")
     suspend fun getAnimeById(
         @Path("animeId") animeId: Int
-    ): AnimeResponse
+    ): DetailAnimeResponse
 
 
     @GET("seasons/upcoming")

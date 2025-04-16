@@ -3,8 +3,6 @@ package com.fauzangifari.yournime.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fauzangifari.core.common.Resource
-import com.fauzangifari.core.common.model.AnimeRating
-import com.fauzangifari.core.common.model.AnimeType
 import com.fauzangifari.core.common.model.TopAnimeFilter
 import com.fauzangifari.core.domain.usecase.GetAnimeUpcoming
 import com.fauzangifari.core.domain.usecase.GetTopAnime
@@ -18,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getTopAnimeUseCase: GetTopAnime,
-    private val getAnimeUpcomingUseCase: GetAnimeUpcoming
+    private val getAnimeUpcomingUseCase: GetAnimeUpcoming,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(HomeState())
@@ -29,7 +27,6 @@ class HomeViewModel @Inject constructor(
         fetchAnimeUpcoming()
         fetchAiringAnime()
     }
-
 
     private fun fetchAiringAnime(){
         viewModelScope.launch {

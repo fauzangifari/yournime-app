@@ -1,5 +1,6 @@
 package com.fauzangifari.yournime.presentation.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,6 +13,7 @@ import com.fauzangifari.yournime.databinding.ActivityHomeBinding
 import com.fauzangifari.yournime.presentation.adapter.AiringAnimeAdapter
 import com.fauzangifari.yournime.presentation.adapter.UpcomingAnimeAdapter
 import com.fauzangifari.yournime.presentation.adapter.TopAnimeAdapter
+import com.fauzangifari.yournime.presentation.detail.DetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -56,29 +58,35 @@ class HomeActivity : AppCompatActivity() {
     private fun handleError(topError: String?, upcomingError: String?, airingError: String?) {
         topError?.let {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            Log.e("HomeActivity", "Top Anime Error: $it")
         }
         upcomingError?.let {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            Log.e("HomeActivity", "Upcoming Anime Error: $it")
         }
         airingError?.let {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            Log.e("HomeActivity", "Airing Anime Error: $it")
         }
     }
 
     private fun setupRecyclerView() {
         topAnimeAdapter = TopAnimeAdapter { anime ->
-            // Handle TopAnime item click
+            val intent = Intent(this, DetailActivity::class.java).apply {
+                putExtra("animeId", anime.id)
+            }
+            startActivity(intent)
         }
 
         upcomingAnimeAdapter = UpcomingAnimeAdapter { anime ->
-            // Handle RecomAnime item click
+            val intent = Intent(this, DetailActivity::class.java).apply {
+                putExtra("animeId", anime.id)
+            }
+            startActivity(intent)
         }
 
         airingAnimeAdapter = AiringAnimeAdapter { anime ->
-            // Handle AiringAnime item click
+            val intent = Intent(this, DetailActivity::class.java).apply {
+                putExtra("animeId", anime.id)
+            }
+            startActivity(intent)
         }
 
         binding.rvTopAnime.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)

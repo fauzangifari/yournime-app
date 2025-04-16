@@ -1,6 +1,7 @@
 package com.fauzangifari.core.data.repository
 
 import com.fauzangifari.core.data.source.remote.response.AnimeResponse
+import com.fauzangifari.core.data.source.remote.response.DetailAnimeResponse
 import com.fauzangifari.core.data.source.remote.retrofit.ApiService
 import com.fauzangifari.core.domain.repository.AnimeRepository
 import javax.inject.Inject
@@ -28,7 +29,7 @@ class AnimeRepositoryImpl @Inject constructor(
         return apiService.getAnimeSearch(query = query, sort = sort)
     }
 
-    override suspend fun getAnimeById(animeId: Int): AnimeResponse {
+    override suspend fun getAnimeById(animeId: Int): DetailAnimeResponse {
         return apiService.getAnimeById(animeId = animeId)
     }
 

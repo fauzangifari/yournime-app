@@ -21,10 +21,8 @@ class GetAnimeById @Inject constructor(
             val response = animeRepository.getAnimeById(
                 animeId = id
             )
-            val anime = response.data?.mapNotNull {
-                it?.toDomain()
-            } ?: emptyList()
-            emit(Resource.Success(anime))
+            val anime = response.data?.toDomain()
+            emit(Resource.Success(listOfNotNull(anime)))
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage ?: "Terjadi kesalahan yang tidak terduga"))
         } catch (e: HttpException) {
