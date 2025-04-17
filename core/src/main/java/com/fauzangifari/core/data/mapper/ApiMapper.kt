@@ -1,4 +1,4 @@
-package com.fauzangifari.core.utils
+package com.fauzangifari.core.data.mapper
 
 import com.fauzangifari.core.data.source.remote.response.DataItem
 import com.fauzangifari.core.domain.model.Anime

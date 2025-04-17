@@ -3,7 +3,7 @@ package com.fauzangifari.core.domain.usecase
 import com.fauzangifari.core.common.Resource
 import com.fauzangifari.core.domain.model.Anime
 import com.fauzangifari.core.domain.repository.AnimeRepository
-import com.fauzangifari.core.utils.toDomain
+import com.fauzangifari.core.data.mapper.toDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException

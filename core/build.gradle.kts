@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.kapt)
-//    alias(libs.plugins.ksp)
+    id("com.google.devtools.ksp")
     id("kotlin-parcelize")
 }
 
@@ -59,7 +59,8 @@ dependencies {
     implementation(libs.logging.interceptor)
 
     // Room
-//    implementation(libs.androidx.room.runtime)
-//    implementation(libs.androidx.room.ktx)
-//    ksp(libs.androidx.room.compiler)
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
+
 }

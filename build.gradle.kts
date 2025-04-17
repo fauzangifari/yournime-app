@@ -6,5 +6,5 @@ plugins {
     alias(libs.plugins.kotlin.kapt) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.android.dynamic.feature) apply false
-    alias(libs.plugins.ksp) apply false
+    id("com.google.devtools.ksp") version "2.1.20-2.0.0" apply false
 }
