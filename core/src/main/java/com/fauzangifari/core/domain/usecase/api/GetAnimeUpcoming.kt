@@ -1,4 +1,4 @@
-package com.fauzangifari.core.domain.usecase
+package com.fauzangifari.core.domain.usecase.api
 
 import com.fauzangifari.core.common.Resource
 import com.fauzangifari.core.domain.model.Anime
@@ -10,19 +10,13 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetAnimeSearch @Inject constructor(
+class GetAnimeUpcoming @Inject constructor(
     private val animeRepository: AnimeRepository
 ) {
-    operator fun invoke(
-        query: String,
-        sort: String = "asc"
-    ) : Flow<Resource<List<Anime>>> = flow {
+    operator fun invoke() : Flow<Resource<List<Anime>>> = flow {
         try {
             emit(Resource.Loading())
-            val response = animeRepository.getAnimeSearch(
-                query = query,
-                sort = sort
-            )
+            val response = animeRepository.getAnimeUpcoming()
             val animeList = response.data?.mapNotNull {
                 it?.toDomain()
             } ?: emptyList()

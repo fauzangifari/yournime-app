@@ -1,5 +1,8 @@
 package com.fauzangifari.core.data.mapper
 
+import com.fauzangifari.core.data.source.local.entity.AnimeEntity
+import com.fauzangifari.core.data.source.local.entity.AnimeGenreCrossRef
+import com.fauzangifari.core.data.source.local.entity.GenreEntity
 import com.fauzangifari.core.data.source.local.relation.AnimeWithGenres
 import com.fauzangifari.core.domain.model.Anime
 import com.fauzangifari.core.domain.model.Genre
@@ -34,3 +37,39 @@ fun AnimeWithGenres.toDomain(): Anime {
         members = animeEntity.members ?: 0,
     )
 }
+
+fun Anime.toEntity() = AnimeEntity(
+    malId = this.id,
+    title = this.title,
+    year = this.year,
+    scoredBy = this.scoredBy,
+    source = this.source,
+    type = this.type,
+    images = this.images,
+    episodes = this.episodes,
+    status = this.status,
+    score = this.score,
+    favorites = this.favorites,
+    synopsis = this.synopsis,
+    background = this.background,
+    season = this.season,
+    rank = this.rank,
+    popularity = this.popularity,
+    duration = this.duration,
+    members = this.members,
+)
+
+fun Genre.toEntity() = GenreEntity(
+    malId = this.malId,
+    name = this.name,
+    type = this.type,
+    url = this.url,
+)
+
+fun Anime.toCrossRefs(): List<AnimeGenreCrossRef> =
+    this.genre.map { genre ->
+        AnimeGenreCrossRef(
+            animeId = this.id,
+            genreId = genre.malId
+        )
+    }

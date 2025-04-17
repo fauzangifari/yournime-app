@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fauzangifari.core.common.Resource
 import com.fauzangifari.core.common.model.TopAnimeFilter
-import com.fauzangifari.core.domain.usecase.GetAnimeUpcoming
-import com.fauzangifari.core.domain.usecase.GetTopAnime
+import com.fauzangifari.core.domain.usecase.api.GetAnimeUpcoming
+import com.fauzangifari.core.domain.usecase.api.GetTopAnime
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -18,10 +18,10 @@ interface AnimeFavoriteDao {
     suspend fun insertAnime(anime: AnimeEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertGenre(genre: GenreEntity)
+    suspend fun insertGenre(genre: List<GenreEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCrossRef(crossRef: AnimeGenreCrossRef)
+    suspend fun insertCrossRef(crossRef: List<AnimeGenreCrossRef>)
 
     // Delete
     @Transaction

@@ -27,7 +27,6 @@ data class AnimeEntity(
     val synopsis: String?,
     val background: String?,
     val season: String?,
-    val genreEntity: GenreEntity?,
     val rank: Int?,
     val popularity: Int?,
     val duration: String?,

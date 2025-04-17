@@ -1,4 +1,4 @@
-package com.fauzangifari.core.domain.usecase
+package com.fauzangifari.core.domain.usecase.api
 
 import com.fauzangifari.core.common.Resource
 import com.fauzangifari.core.domain.model.Anime

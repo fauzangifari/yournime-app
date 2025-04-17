@@ -1,9 +1,11 @@
 package com.fauzangifari.core.data.repository
 
+import com.fauzangifari.core.data.mapper.toEntity
 import com.fauzangifari.core.data.source.local.dao.AnimeFavoriteDao
 import com.fauzangifari.core.data.source.local.entity.AnimeEntity
 import com.fauzangifari.core.data.source.local.entity.AnimeGenreCrossRef
-import com.fauzangifari.core.data.source.local.entity.GenreEntity
+import com.fauzangifari.core.domain.model.Anime
+import com.fauzangifari.core.domain.model.Genre
 import com.fauzangifari.core.domain.repository.AnimeFavoriteRepository
 import javax.inject.Inject
 
@@ -16,77 +18,21 @@ class AnimeFavoriteRepositoryImpl @Inject constructor(
     }
 
     override suspend fun insertAnime(
-        malId: Int,
-        title: String,
-        year: Int,
-        scoredBy: Int,
-        source: String,
-        type: String,
-        images: String,
-        episodes: Int,
-        status: String,
-        score: Double,
-        favorites: Int,
-        synopsis: String,
-        background: String,
-        season: String,
-        genreEntity: GenreEntity,
-        rank: Int,
-        popularity: Int,
-        duration: String,
-        members: Int
-    ): AnimeEntity {
-        val animeEntity = AnimeEntity(
-            malId = malId,
-            title = title,
-            year = year,
-            scoredBy = scoredBy,
-            source = source,
-            type = type,
-            images = images,
-            episodes = episodes,
-            status = status,
-            score = score,
-            favorites = favorites,
-            synopsis = synopsis,
-            background = background,
-            season = season,
-            genreEntity = genreEntity,
-            rank = rank,
-            popularity = popularity,
-            duration = duration,
-            members = members
-        )
+        anime: Anime,
+        genres: List<Genre>
+    ) {
+        val animeEntity = anime.toEntity()
+        val genreEntities = genres.map { it.toEntity() }
+        val crossRefs = genres.map { genre ->
+            AnimeGenreCrossRef(
+                animeId = anime.id,
+                genreId = genre.malId
+            )
+        }
+
         animeFavoriteDao.insertAnime(animeEntity)
-        return animeEntity
-    }
-
-    override suspend fun insertGenre(
-        malId: Int,
-        name: String,
-        type: String,
-        url: String
-    ): GenreEntity {
-        val genreEntity = GenreEntity(
-            malId = malId,
-            name = name,
-            type = type,
-            url = url
-        )
-        animeFavoriteDao.insertGenre(genreEntity)
-        return genreEntity
-    }
-
-    override suspend fun insertCrossRef(
-        animeMalId: Int,
-        genreMalId: Int
-    ) : AnimeGenreCrossRef {
-        val crossRef = AnimeGenreCrossRef(
-            animeId = animeMalId,
-            genreId = genreMalId
-        )
-        animeFavoriteDao.insertCrossRef(crossRef)
-        return crossRef
+        animeFavoriteDao.insertGenre(genreEntities)
+        animeFavoriteDao.insertCrossRef(crossRefs)
     }
 
     override suspend fun deleteAnime(malId: Int) : Int {

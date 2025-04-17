@@ -1,8 +1,7 @@
 package com.fauzangifari.yournime.presentation.detail
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.fauzangifari.core.domain.usecase.GetAnimeById
+import com.fauzangifari.core.domain.usecase.api.GetAnimeById
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
