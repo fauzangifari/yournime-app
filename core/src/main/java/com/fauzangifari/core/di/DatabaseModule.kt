@@ -20,7 +20,7 @@ object DatabaseModule {
     fun provideDatabase(@ApplicationContext context: Context): Database {
         return Room.databaseBuilder(
             context,
-            Database::class.java as Class,
+            Database::class.java,
             "anime_db"
         ).build()
     }

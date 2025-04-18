@@ -25,11 +25,11 @@ interface AnimeFavoriteDao {
 
     // Delete
     @Transaction
-    @Query("DELETE FROM anime_favorite WHERE mal_id = :malId")
+    @Query("DELETE FROM anime WHERE malId = :malId")
     suspend fun deleteAnime(malId: Int)
 
     @Transaction
-    @Query("DELETE FROM anime_genre_cross_ref WHERE animeMalId = :malId")
+    @Query("DELETE FROM anime_genre_cross_ref WHERE animeId = :malId")
     suspend fun deleteCrossRef(malId: Int)
 
     // Select

@@ -59,12 +59,14 @@ fun Anime.toEntity() = AnimeEntity(
     members = this.members,
 )
 
-fun Genre.toEntity() = GenreEntity(
-    malId = this.malId,
-    name = this.name,
-    type = this.type,
-    url = this.url,
-)
+fun Genre.toEntity() = this.malId.toInt().let {
+    GenreEntity(
+        malId = this.malId,
+        name = this.name.toString(),
+        type = this.type.toString(),
+        url = this.url.toString(),
+    )
+}
 
 fun Anime.toCrossRefs(): List<AnimeGenreCrossRef> =
     this.genre.map { genre ->

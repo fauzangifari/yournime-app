@@ -4,6 +4,7 @@ import com.fauzangifari.core.data.mapper.toEntity
 import com.fauzangifari.core.data.source.local.dao.AnimeFavoriteDao
 import com.fauzangifari.core.data.source.local.entity.AnimeEntity
 import com.fauzangifari.core.data.source.local.entity.AnimeGenreCrossRef
+import com.fauzangifari.core.data.source.local.entity.GenreEntity
 import com.fauzangifari.core.domain.model.Anime
 import com.fauzangifari.core.domain.model.Genre
 import com.fauzangifari.core.domain.repository.AnimeFavoriteRepository
@@ -22,7 +23,7 @@ class AnimeFavoriteRepositoryImpl @Inject constructor(
         genres: List<Genre>
     ) {
         val animeEntity = anime.toEntity()
-        val genreEntities = genres.map { it.toEntity() }
+        val genreEntities: List<GenreEntity> = genres.map { it.toEntity() }
         val crossRefs = genres.map { genre ->
             AnimeGenreCrossRef(
                 animeId = anime.id,

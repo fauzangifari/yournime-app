@@ -23,5 +23,5 @@ import androidx.room.ForeignKey
 )
 data class AnimeGenreCrossRef(
     val animeId: Int,
-    val genreId: Int?
+    val genreId: Int
 )

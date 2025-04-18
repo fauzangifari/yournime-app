@@ -13,8 +13,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class GenreEntity(
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
-    val malId: Int?,
-    val name: String?,
-    val type: String?,
-    val url: String?
+    val malId: Int,
+    val name: String,
+    val type: String,
+    val url: String
 ) : Parcelable
