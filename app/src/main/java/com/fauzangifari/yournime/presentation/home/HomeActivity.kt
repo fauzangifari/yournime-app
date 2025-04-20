@@ -14,6 +14,9 @@ import com.fauzangifari.yournime.presentation.adapter.AiringAnimeAdapter
 import com.fauzangifari.yournime.presentation.adapter.UpcomingAnimeAdapter
 import com.fauzangifari.yournime.presentation.adapter.TopAnimeAdapter
 import com.fauzangifari.yournime.presentation.detail.DetailActivity
+import com.google.android.play.core.splitinstall.SplitInstallManager
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
+import com.google.android.play.core.splitinstall.SplitInstallRequest
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,13 +28,53 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var upcomingAnimeAdapter: UpcomingAnimeAdapter
     private lateinit var airingAnimeAdapter: AiringAnimeAdapter
 
+    private lateinit var splitInstallManager: SplitInstallManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        splitInstallManager = SplitInstallManagerFactory.create(this)
+
         setupRecyclerView()
         observeViewModel()
+
+        binding.btnFavorite.setOnClickListener {
+            if (splitInstallManager.installedModules.contains("favorite_feature")) {
+                openFavoriteActivity()
+            } else {
+                installFavoriteModule()
+            }
+        }
+    }
+
+    private fun installFavoriteModule(){
+        val request = SplitInstallRequest.newBuilder()
+            .addModule("favorite_feature")
+            .build()
+
+        splitInstallManager.startInstall(request)
+            .addOnSuccessListener {
+                Log.d("HomeActivity", "Module installed successfully")
+                openFavoriteActivity()
+            }
+            .addOnFailureListener { exception ->
+                Log.e("HomeActivity", "Failed to install module: ${exception.message}")
+            }
+    }
+
+    private fun openFavoriteActivity(){
+        try {
+            val intent = Intent(
+                this,
+                Class.forName("com.fauzangifari.favorite_feature.FavoriteActivity")
+            )
+            startActivity(intent)
+        } catch (e: ClassNotFoundException) {
+            Log.e("HomeActivity", "FavoriteActivity not found: ${e.message}")
+            Toast.makeText(this, "FavoriteActivity not found", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun observeViewModel() {

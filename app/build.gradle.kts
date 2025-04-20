@@ -63,4 +63,12 @@ dependencies {
     // Glide
     implementation(libs.glide)
 
+    // Android Play
+    implementation("com.google.android.play:feature-delivery:2.1.0")
+
+}
+
+hilt {
+    enableAggregatingTask = true
+    enableTransformForLocalTests = true
 }
