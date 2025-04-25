@@ -1,9 +1,9 @@
-package com.fauzangifari.core.domain.usecase.local
+package com.fauzangifari.domain.usecase.local
 
-import com.fauzangifari.core.common.Resource
-import com.fauzangifari.core.domain.model.Anime
-import com.fauzangifari.core.domain.model.Genre
-import com.fauzangifari.core.domain.repository.AnimeFavoriteRepository
+import com.fauzangifari.domain.common.Resource
+import com.fauzangifari.domain.model.Anime
+import com.fauzangifari.domain.model.Genre
+import com.fauzangifari.domain.repository.AnimeFavoriteRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException

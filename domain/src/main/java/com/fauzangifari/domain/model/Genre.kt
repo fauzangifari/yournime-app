@@ -1,4 +1,4 @@
-package com.fauzangifari.core.domain.model
+package com.fauzangifari.domain.model
 
 data class Genre(
     val malId: Int,

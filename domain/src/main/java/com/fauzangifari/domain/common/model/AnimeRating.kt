@@ -1,4 +1,4 @@
-package com.fauzangifari.core.common.model
+package com.fauzangifari.domain.common.model
 
 enum class AnimeRating(val value: String){
     G("g"),

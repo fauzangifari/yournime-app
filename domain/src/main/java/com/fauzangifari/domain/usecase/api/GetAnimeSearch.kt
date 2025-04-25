@@ -1,33 +1,28 @@
-package com.fauzangifari.core.domain.usecase.api
+package com.fauzangifari.domain.usecase.api
 
-import com.fauzangifari.core.common.Resource
-import com.fauzangifari.core.domain.model.Anime
-import com.fauzangifari.core.domain.repository.AnimeRepository
-import com.fauzangifari.core.data.mapper.toDomain
+import com.fauzangifari.domain.model.Anime
+import com.fauzangifari.domain.repository.AnimeRepository
+import com.fauzangifari.domain.common.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetTopAnime @Inject constructor(
+class GetAnimeSearch @Inject constructor(
     private val animeRepository: AnimeRepository
-){
+) {
     operator fun invoke(
-        type: String? = null,
-        filter: String? = null,
-        rating: String? = null
+        query: String,
+        sort: String = "asc"
     ) : Flow<Resource<List<Anime>>> = flow {
         try {
             emit(Resource.Loading())
-            val response = animeRepository.getTopAnime(
-                type = type,
-                filter = filter,
-                rating = rating
+            val response = animeRepository.getAnimeSearch(
+                query = query,
+                sort = sort
             )
-            val animeList = response.data?.mapNotNull {
-                it?.toDomain()
-            } ?: emptyList()
+            val animeList = response
             emit(Resource.Success(animeList))
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage ?: "Terjadi kesalahan yang tidak terduga"))

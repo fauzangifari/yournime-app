@@ -1,4 +1,4 @@
-package com.fauzangifari.core.common
+package com.fauzangifari.domain.common
 
 sealed class UiState<out T> {
     object Loading : UiState<Nothing>()
