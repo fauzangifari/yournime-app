@@ -13,7 +13,11 @@ data class GenreWithAnimes (
     @Relation(
         parentColumn = "malId",
         entityColumn = "malId",
-        associateBy = Junction(AnimeGenreCrossRef::class)
+        associateBy = Junction(
+            value = AnimeGenreCrossRef::class,
+            parentColumn = "genreId",
+            entityColumn = "animeId"
+        )
     )
     val animes: List<AnimeEntity>
 )

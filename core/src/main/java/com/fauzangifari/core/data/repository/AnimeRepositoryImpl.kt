@@ -1,39 +1,44 @@
 package com.fauzangifari.core.data.repository
 
-import com.fauzangifari.core.data.source.remote.response.AnimeResponse
-import com.fauzangifari.core.data.source.remote.response.DetailAnimeResponse
+import com.fauzangifari.core.data.mapper.toDomain
 import com.fauzangifari.core.data.source.remote.retrofit.ApiService
-import com.fauzangifari.core.domain.repository.AnimeRepository
+import com.fauzangifari.domain.model.Anime
+import com.fauzangifari.domain.repository.AnimeRepository
 import javax.inject.Inject
 
 class AnimeRepositoryImpl @Inject constructor(
     private val apiService: ApiService
 ) : AnimeRepository {
 
-    override suspend fun getAllAnime(): AnimeResponse {
-        return apiService.getAllAnime()
+    override suspend fun getAllAnime(): List<Anime> {
+        val response = apiService.getAllAnime()
+        return response.data?.mapNotNull { it?.toDomain() } ?: emptyList()
     }
 
     override suspend fun getTopAnime(
         type: String?,
         filter: String?,
         rating: String?
-    ): AnimeResponse {
-        return apiService.getTopAnime(type = type, filter = filter, rating = rating)
+    ): List<Anime> {
+        val response = apiService.getTopAnime(type, filter, rating)
+        return response.data?.mapNotNull { it?.toDomain() } ?: emptyList()
     }
 
     override suspend fun getAnimeSearch(
         query: String,
         sort: String
-    ): AnimeResponse {
-        return apiService.getAnimeSearch(query = query, sort = sort)
+    ): List<Anime> {
+        val response = apiService.getAnimeSearch(query = query, sort = sort)
+        return response.data?.mapNotNull { it?.toDomain() } ?: emptyList()
     }
 
-    override suspend fun getAnimeById(animeId: Int): DetailAnimeResponse {
-        return apiService.getAnimeById(animeId = animeId)
+    override suspend fun getAnimeById(animeId: Int): List<Anime> {
+        val response = apiService.getAnimeById(animeId)
+        return listOfNotNull(response.data?.toDomain())
     }
 
-    override suspend fun getAnimeUpcoming(): AnimeResponse {
-        return apiService.getAnimeUpcoming()
+    override suspend fun getAnimeUpcoming(): List<Anime> {
+        val response = apiService.getAnimeUpcoming()
+        return response.data?.mapNotNull { it?.toDomain() } ?: emptyList()
     }
 }

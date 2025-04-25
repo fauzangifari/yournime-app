@@ -1,6 +1,6 @@
 package com.fauzangifari.core.di
 
-import com.fauzangifari.core.common.Constant
+import com.fauzangifari.domain.common.Constant
 import com.fauzangifari.core.data.source.remote.retrofit.ApiService
 import dagger.Module
 import dagger.Provides

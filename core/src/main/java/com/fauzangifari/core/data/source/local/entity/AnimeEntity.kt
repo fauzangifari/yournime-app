@@ -12,8 +12,7 @@ import kotlinx.parcelize.Parcelize
 )
 @Parcelize
 data class AnimeEntity(
-    @PrimaryKey(autoGenerate = true) var id: Int = 0,
-    val malId: Int,
+    @PrimaryKey val malId: Int,
     val title: String?,
     val year: Int?,
     val scoredBy: Int?,

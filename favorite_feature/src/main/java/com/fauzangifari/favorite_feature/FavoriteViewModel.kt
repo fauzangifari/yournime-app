@@ -2,10 +2,10 @@ package com.fauzangifari.favorite_feature
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fauzangifari.core.common.Resource
-import com.fauzangifari.core.domain.model.Anime
-import com.fauzangifari.core.domain.model.Genre
-import com.fauzangifari.core.domain.usecase.local.InsertAnimeFavorite
+import com.fauzangifari.domain.common.Resource
+import com.fauzangifari.domain.model.Anime
+import com.fauzangifari.domain.model.Genre
+import com.fauzangifari.domain.usecase.local.InsertAnimeFavorite
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

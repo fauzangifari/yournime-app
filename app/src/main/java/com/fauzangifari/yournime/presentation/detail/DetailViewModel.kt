@@ -1,13 +1,13 @@
 package com.fauzangifari.yournime.presentation.detail
 
 import androidx.lifecycle.ViewModel
-import com.fauzangifari.core.domain.usecase.api.GetAnimeById
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import androidx.lifecycle.viewModelScope
-import com.fauzangifari.core.common.Resource
+import com.fauzangifari.domain.common.Resource
+import com.fauzangifari.domain.usecase.api.GetAnimeById
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 

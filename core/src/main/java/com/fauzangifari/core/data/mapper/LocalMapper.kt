@@ -4,8 +4,8 @@ import com.fauzangifari.core.data.source.local.entity.AnimeEntity
 import com.fauzangifari.core.data.source.local.entity.AnimeGenreCrossRef
 import com.fauzangifari.core.data.source.local.entity.GenreEntity
 import com.fauzangifari.core.data.source.local.relation.AnimeWithGenres
-import com.fauzangifari.core.domain.model.Anime
-import com.fauzangifari.core.domain.model.Genre
+import com.fauzangifari.domain.model.Anime
+import com.fauzangifari.domain.model.Genre
 
 fun AnimeWithGenres.toDomain(): Anime {
     return Anime(

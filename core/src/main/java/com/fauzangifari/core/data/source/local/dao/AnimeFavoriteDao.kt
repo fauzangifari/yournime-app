@@ -1,7 +1,6 @@
 package com.fauzangifari.core.data.source.local.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -9,6 +8,7 @@ import androidx.room.Transaction
 import com.fauzangifari.core.data.source.local.entity.AnimeEntity
 import com.fauzangifari.core.data.source.local.entity.AnimeGenreCrossRef
 import com.fauzangifari.core.data.source.local.entity.GenreEntity
+import com.fauzangifari.core.data.source.local.relation.AnimeWithGenres
 
 @Dao
 interface AnimeFavoriteDao {
@@ -35,6 +35,6 @@ interface AnimeFavoriteDao {
     // Select
     @Transaction
     @Query("SELECT * FROM anime")
-    suspend fun getAllAnime(): List<AnimeEntity>
+    suspend fun getAllAnimeWithGenres(): List<AnimeWithGenres>
 
 }

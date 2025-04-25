@@ -23,3 +23,4 @@ rootProject.name = "YourNime"
 include(":app")
 include(":core")
 include(":favorite_feature")
+include(":domain")

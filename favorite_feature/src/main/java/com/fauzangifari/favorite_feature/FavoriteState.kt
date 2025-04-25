@@ -1,6 +1,6 @@
 package com.fauzangifari.favorite_feature
 
-import com.fauzangifari.core.domain.model.Anime
+import com.fauzangifari.domain.model.Anime
 
 data class FavoriteState(
     val favoriteAnime: Anime? = null,

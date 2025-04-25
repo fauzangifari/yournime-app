@@ -1,6 +1,6 @@
 package com.fauzangifari.core.data.source.remote.retrofit
 
-import com.fauzangifari.core.common.Constant
+import com.fauzangifari.domain.common.Constant
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

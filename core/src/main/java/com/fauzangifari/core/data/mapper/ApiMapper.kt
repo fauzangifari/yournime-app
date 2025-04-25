@@ -1,8 +1,8 @@
 package com.fauzangifari.core.data.mapper
 
 import com.fauzangifari.core.data.source.remote.response.DataItem
-import com.fauzangifari.core.domain.model.Anime
-import com.fauzangifari.core.domain.model.Genre
+import com.fauzangifari.domain.model.Anime
+import com.fauzangifari.domain.model.Genre
 
 fun DataItem.toDomain(): Anime {
     return Anime(

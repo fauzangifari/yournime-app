@@ -1,21 +1,21 @@
 package com.fauzangifari.core.data.repository
 
+import com.fauzangifari.core.data.mapper.toDomain
 import com.fauzangifari.core.data.mapper.toEntity
 import com.fauzangifari.core.data.source.local.dao.AnimeFavoriteDao
-import com.fauzangifari.core.data.source.local.entity.AnimeEntity
 import com.fauzangifari.core.data.source.local.entity.AnimeGenreCrossRef
 import com.fauzangifari.core.data.source.local.entity.GenreEntity
-import com.fauzangifari.core.domain.model.Anime
-import com.fauzangifari.core.domain.model.Genre
-import com.fauzangifari.core.domain.repository.AnimeFavoriteRepository
+import com.fauzangifari.domain.model.Anime
+import com.fauzangifari.domain.model.Genre
+import com.fauzangifari.domain.repository.AnimeFavoriteRepository
 import javax.inject.Inject
 
 class AnimeFavoriteRepositoryImpl @Inject constructor(
     private val animeFavoriteDao: AnimeFavoriteDao
 ) : AnimeFavoriteRepository {
 
-    override suspend fun getAllAnime(): List<AnimeEntity> {
-        return animeFavoriteDao.getAllAnime()
+    override suspend fun getAllAnime(): List<Anime> {
+        return animeFavoriteDao.getAllAnimeWithGenres().map { it.toDomain() }
     }
 
     override suspend fun insertAnime(

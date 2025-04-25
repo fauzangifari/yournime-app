@@ -1,6 +1,6 @@
 package com.fauzangifari.yournime.presentation.detail
 
-import com.fauzangifari.core.domain.model.Anime
+import com.fauzangifari.domain.model.Anime
 
 data class DetailState(
     val detailAnime: Anime? = null,

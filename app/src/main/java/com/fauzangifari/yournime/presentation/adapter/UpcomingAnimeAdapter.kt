@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.fauzangifari.core.domain.model.Anime
+import com.fauzangifari.domain.model.Anime
 import com.fauzangifari.yournime.R
 
 class UpcomingAnimeAdapter(
