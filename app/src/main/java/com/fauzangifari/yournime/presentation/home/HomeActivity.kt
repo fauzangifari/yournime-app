@@ -54,11 +54,10 @@ class HomeActivity : AppCompatActivity() {
 
         splitInstallManager.startInstall(request)
             .addOnSuccessListener {
-                Log.d("HomeActivity", "Module installed successfully")
                 openFavoriteActivity()
             }
             .addOnFailureListener { exception ->
-                Log.e("HomeActivity", "Failed to install module: ${exception.message}")
+                Toast.makeText(this, "Failed to install module: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -70,7 +69,6 @@ class HomeActivity : AppCompatActivity() {
             )
             startActivity(intent)
         } catch (e: ClassNotFoundException) {
-            Log.e("HomeActivity", "FavoriteActivity not found: ${e.message}")
             Toast.makeText(this, "FavoriteActivity not found", Toast.LENGTH_SHORT).show()
         }
     }

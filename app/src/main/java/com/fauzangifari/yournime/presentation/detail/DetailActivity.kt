@@ -30,14 +30,19 @@ class DetailActivity : AppCompatActivity() {
         val animeId = intent.getIntExtra("animeId", -1)
         if (animeId != -1) {
             detailViewModel.fetchDetailAnime(animeId)
+            detailViewModel.fetchIsAnimeFavorite(animeId)
         }
 
         observerState()
 
         binding.btnAddFavorite.setOnClickListener {
-            detailViewModel.state.value.detailAnime?.let { anime ->
-                val genres = anime.genre
-                detailViewModel.insertAnimeFavorite(anime, genres)
+            if (detailViewModel.state.value.isAnimeFavorite) {
+                Toast.makeText(this, "Anime sudah ada di favorit", Toast.LENGTH_SHORT).show()
+            } else {
+                detailViewModel.state.value.detailAnime?.let { anime ->
+                    val genres = anime.genre
+                    detailViewModel.insertAnimeFavorite(anime, genres)
+                }
             }
         }
     }
@@ -63,7 +68,7 @@ class DetailActivity : AppCompatActivity() {
                         binding.tvScore.text = "⭐ ${anime.score}"
                         binding.tvRank.text = "Rank #${anime.rank} • Popularity #${anime.popularity}"
                         binding.tvMembers.text = "Members ${anime.members} • Favorites ${anime.favorites}"
-                        binding.tvGenres.text = "Genres: ${anime.genre?.joinToString { it.name }}"
+                        binding.tvGenres.text = "Genres: ${anime.genre.joinToString { it.name }}"
                         binding.tvSynopsis.text = anime.synopsis
                         binding.tvBackground.text = anime.background
                     } else -> {
@@ -71,15 +76,21 @@ class DetailActivity : AppCompatActivity() {
                     }
                 }
 
+                if (state.isAnimeFavorite) {
+                    binding.btnAddFavorite.text = "Sudah di Favorit"
+                    binding.btnAddFavorite.isEnabled = false
+                } else {
+                    binding.btnAddFavorite.text = "Tambah ke Favorit"
+                    binding.btnAddFavorite.isEnabled = true
+                }
+
                 when {
                     state.insertAnimeLoading -> {
                         binding.btnAddFavorite.isEnabled = false
                     }
                     state.insertAnime != null -> {
-                        binding.btnAddFavorite.isEnabled = true
+                        binding.btnAddFavorite.isEnabled = false
                         Toast.makeText(this@DetailActivity, "Berhasil menambahkan ke favorit!", Toast.LENGTH_SHORT).show()
-                    } else -> {
-                        binding.btnAddFavorite.isEnabled = true
                     }
                 }
             }
@@ -101,3 +112,4 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 }
+

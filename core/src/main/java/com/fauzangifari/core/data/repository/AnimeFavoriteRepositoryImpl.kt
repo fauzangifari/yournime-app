@@ -39,4 +39,8 @@ class AnimeFavoriteRepositoryImpl(
         animeFavoriteDao.deleteAnime(malId)
         return malId
     }
+
+    override suspend fun isFavoriteAnime(malId: Int): Boolean {
+        return animeFavoriteDao.isAnimeFavorite(malId)
+    }
 }

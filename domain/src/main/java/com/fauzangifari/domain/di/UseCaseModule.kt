@@ -5,6 +5,7 @@ import com.fauzangifari.domain.usecase.api.GetAnimeSearch
 import com.fauzangifari.domain.usecase.api.GetAnimeUpcoming
 import com.fauzangifari.domain.usecase.api.GetTopAnime
 import com.fauzangifari.domain.usecase.local.GetAllAnimeFavorite
+import com.fauzangifari.domain.usecase.local.GetIsAnimeFavorite
 import com.fauzangifari.domain.usecase.local.InsertAnimeFavorite
 import org.koin.dsl.module
 
@@ -19,4 +20,5 @@ val useCaseModule = module {
     // Local
     factory { InsertAnimeFavorite(get()) }
     factory { GetAllAnimeFavorite(get()) }
+    factory { GetIsAnimeFavorite(get()) }
 }

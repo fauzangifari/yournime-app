@@ -37,4 +37,8 @@ interface AnimeFavoriteDao {
     @Query("SELECT * FROM anime")
     suspend fun getAllAnimeWithGenres(): List<AnimeWithGenres>
 
+    @Transaction
+    @Query("SELECT EXISTS(SELECT * FROM anime WHERE malId = :malId)")
+    suspend fun isAnimeFavorite(malId: Int): Boolean
+
 }

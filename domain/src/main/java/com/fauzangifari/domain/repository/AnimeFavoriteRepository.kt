@@ -14,4 +14,6 @@ interface AnimeFavoriteRepository {
 
     suspend fun deleteAnime(malId: Int) : Int
 
+    suspend fun isFavoriteAnime(malId: Int) : Boolean
+
 }
