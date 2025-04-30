@@ -5,19 +5,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.fauzangifari.yournime.databinding.ActivitySearchBinding
 import com.fauzangifari.yournime.presentation.adapter.SearchAnimeAdapter
 import com.fauzangifari.yournime.presentation.detail.DetailActivity
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class SearchActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySearchBinding
-    private val searchViewModel: SearchViewModel by viewModels()
+    private val searchViewModel: SearchViewModel by viewModel()
 
     private lateinit var searchAnimeAdapter: SearchAnimeAdapter
 

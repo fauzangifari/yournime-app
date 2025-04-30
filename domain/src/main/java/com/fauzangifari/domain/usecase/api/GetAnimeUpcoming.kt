@@ -7,9 +7,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
-import javax.inject.Inject
 
-class GetAnimeUpcoming @Inject constructor(
+class GetAnimeUpcoming(
     private val animeRepository: AnimeRepository
 ) {
     operator fun invoke() : Flow<Resource<List<Anime>>> = flow {

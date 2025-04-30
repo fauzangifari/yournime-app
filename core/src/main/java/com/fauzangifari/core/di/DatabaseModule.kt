@@ -1,36 +1,21 @@
 package com.fauzangifari.core.di
 
-import android.content.Context
 import androidx.room.Room
 import com.fauzangifari.core.data.source.local.Database
-import com.fauzangifari.core.data.source.local.dao.AnimeFavoriteDao
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.module
 
-@Module
-@InstallIn(SingletonComponent::class)
-object DatabaseModule {
+val databaseModule = module {
 
-    @Singleton
-    @Provides
-    fun provideDatabase(@ApplicationContext context: Context): Database {
-        return Room.databaseBuilder(
-            context,
+    single {
+        Room.databaseBuilder(
+            androidContext(),
             Database::class.java,
             "anime_db"
         ).build()
     }
 
-    @Singleton
-    @Provides
-    fun provideAnimeFavoriteDao(
-        database: Database
-    ) : AnimeFavoriteDao {
-        return database.animeFavoriteDao
+    factory {
+        get<Database>().animeFavoriteDao
     }
-
 }

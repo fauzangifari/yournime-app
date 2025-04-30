@@ -6,15 +6,11 @@ import com.fauzangifari.domain.common.Resource
 import com.fauzangifari.domain.model.Anime
 import com.fauzangifari.domain.model.Genre
 import com.fauzangifari.domain.usecase.local.InsertAnimeFavorite
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
-
-@HiltViewModel
-class FavoriteViewModel @Inject constructor(
+class FavoriteViewModel (
     private val insertAnimeFavoriteUseCase: InsertAnimeFavorite
 ) : ViewModel() {
 

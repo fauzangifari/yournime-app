@@ -4,9 +4,8 @@ import com.fauzangifari.core.data.mapper.toDomain
 import com.fauzangifari.core.data.source.remote.retrofit.ApiService
 import com.fauzangifari.domain.model.Anime
 import com.fauzangifari.domain.repository.AnimeRepository
-import javax.inject.Inject
 
-class AnimeRepositoryImpl @Inject constructor(
+class AnimeRepositoryImpl(
     private val apiService: ApiService
 ) : AnimeRepository {
 

@@ -8,9 +8,8 @@ import com.fauzangifari.core.data.source.local.entity.GenreEntity
 import com.fauzangifari.domain.model.Anime
 import com.fauzangifari.domain.model.Genre
 import com.fauzangifari.domain.repository.AnimeFavoriteRepository
-import javax.inject.Inject
 
-class AnimeFavoriteRepositoryImpl @Inject constructor(
+class AnimeFavoriteRepositoryImpl(
     private val animeFavoriteDao: AnimeFavoriteDao
 ) : AnimeFavoriteRepository {
 

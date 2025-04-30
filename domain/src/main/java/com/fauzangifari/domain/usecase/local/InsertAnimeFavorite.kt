@@ -8,9 +8,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
-import javax.inject.Inject
 
-class InsertAnimeFavorite @Inject constructor(
+class InsertAnimeFavorite(
     private val animeFavoriteRepository: AnimeFavoriteRepository
 ){
     operator fun invoke(

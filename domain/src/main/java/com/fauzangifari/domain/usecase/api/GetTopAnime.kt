@@ -7,9 +7,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
-import javax.inject.Inject
 
-class GetTopAnime @Inject constructor(
+class GetTopAnime(
     private val animeRepository: AnimeRepository
 ){
     operator fun invoke(

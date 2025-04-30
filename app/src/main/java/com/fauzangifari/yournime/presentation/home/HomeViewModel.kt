@@ -7,15 +7,12 @@ import com.fauzangifari.domain.common.model.TopAnimeFilter
 import com.fauzangifari.domain.usecase.api.GetAnimeSearch
 import com.fauzangifari.domain.usecase.api.GetAnimeUpcoming
 import com.fauzangifari.domain.usecase.api.GetTopAnime
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class HomeViewModel @Inject constructor(
+class HomeViewModel (
     private val getTopAnimeUseCase: GetTopAnime,
     private val getAnimeUpcomingUseCase: GetAnimeUpcoming,
     private val getAnimeSearchUseCase: GetAnimeSearch

@@ -1,7 +1,6 @@
 package com.fauzangifari.yournime.presentation.detail
 
 import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -9,10 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.fauzangifari.domain.common.Resource
 import com.fauzangifari.domain.usecase.api.GetAnimeById
 import kotlinx.coroutines.flow.update
-import javax.inject.Inject
 
-@HiltViewModel
-class DetailViewModel @Inject constructor(
+class DetailViewModel(
     private val getAnimeByIdUseCase: GetAnimeById
 ) : ViewModel() {
 

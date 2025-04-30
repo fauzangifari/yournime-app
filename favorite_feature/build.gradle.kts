@@ -1,8 +1,6 @@
 plugins {
     alias(libs.plugins.android.dynamic.feature)
     alias(libs.plugins.kotlin.android)
-//    alias(libs.plugins.hilt.android)
-    alias(libs.plugins.kotlin.kapt)
 }
 android {
     namespace = "com.fauzangifari.favorite_feature"
@@ -49,7 +47,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    // Dagger Hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    // Koin
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
 }

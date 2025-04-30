@@ -1,8 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt.android)
-    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
@@ -57,9 +55,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
-    // Dagger Hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    // Koin
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
 
     // Glide
     implementation(libs.glide)

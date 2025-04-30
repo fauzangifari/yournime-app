@@ -5,12 +5,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import com.fauzangifari.yournime.R
 import com.fauzangifari.yournime.databinding.ActivitySplashBinding
 import com.fauzangifari.yournime.presentation.home.HomeActivity
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
