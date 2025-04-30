@@ -19,8 +19,8 @@ class GetAnimeById (
             val response = animeRepository.getAnimeById(
                 animeId = id
             )
-            val anime = response.firstOrNull()
-            emit(Resource.Success(listOfNotNull(anime)))
+            val animeList = response.firstOrNull()
+            emit(Resource.Success(listOfNotNull(animeList)))
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage ?: "Terjadi kesalahan yang tidak terduga"))
         } catch (e: HttpException) {

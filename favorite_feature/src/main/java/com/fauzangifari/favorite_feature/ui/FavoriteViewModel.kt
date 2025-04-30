@@ -1,34 +1,33 @@
-package com.fauzangifari.favorite_feature
+package com.fauzangifari.favorite_feature.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fauzangifari.domain.common.Resource
-import com.fauzangifari.domain.model.Anime
-import com.fauzangifari.domain.model.Genre
-import com.fauzangifari.domain.usecase.local.InsertAnimeFavorite
+import com.fauzangifari.domain.usecase.local.GetAllAnimeFavorite
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+
 class FavoriteViewModel (
-    private val insertAnimeFavoriteUseCase: InsertAnimeFavorite
+    private val getAnimeFavoriteUseCase: GetAllAnimeFavorite
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(FavoriteState())
     val state: StateFlow<FavoriteState> = _state
 
-    fun insertAnimeFavorite(
-        anime: Anime,
-        genres: List<Genre>
-    ) {
+    init {
+        fetchAnimeFavorite()
+    }
+
+    private fun fetchAnimeFavorite(){
         viewModelScope.launch {
-            insertAnimeFavoriteUseCase(anime, genres).collect { result ->
+            getAnimeFavoriteUseCase().collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         _state.update {
                             it.copy(
                                 favoriteAnimeLoading = true,
-                                favoriteAnimeError = null
                             )
                         }
                     }
@@ -37,7 +36,8 @@ class FavoriteViewModel (
                         _state.update {
                             it.copy(
                                 favoriteAnimeLoading = false,
-                                favoriteAnime = result.data
+                                favoriteAnime = result.data ?: emptyList(),
+                                favoriteAnimeError = ""
                             )
                         }
                     }

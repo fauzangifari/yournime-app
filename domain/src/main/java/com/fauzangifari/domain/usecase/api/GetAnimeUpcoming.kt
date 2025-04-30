@@ -15,8 +15,7 @@ class GetAnimeUpcoming(
         try {
             emit(Resource.Loading())
             val response = animeRepository.getAnimeUpcoming()
-            val animeList = response
-            emit(Resource.Success(animeList))
+            emit(Resource.Success(response))
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage ?: "Terjadi kesalahan yang tidak terduga"))
         } catch (e: HttpException) {

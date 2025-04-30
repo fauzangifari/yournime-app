@@ -50,4 +50,7 @@ dependencies {
     // Koin
     implementation(libs.koin.core)
     implementation(libs.koin.android)
+
+    // Glide
+    implementation(libs.glide)
 }

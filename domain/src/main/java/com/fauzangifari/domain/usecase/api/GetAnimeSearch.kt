@@ -17,11 +17,10 @@ class GetAnimeSearch(
     ) : Flow<Resource<List<Anime>>> = flow {
         try {
             emit(Resource.Loading())
-            val response = animeRepository.getAnimeSearch(
+            val animeList = animeRepository.getAnimeSearch(
                 query = query,
                 sort = sort
             )
-            val animeList = response
             emit(Resource.Success(animeList))
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage ?: "Terjadi kesalahan yang tidak terduga"))

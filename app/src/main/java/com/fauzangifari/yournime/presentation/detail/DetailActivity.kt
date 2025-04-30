@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide
 import com.fauzangifari.yournime.R
 import com.fauzangifari.yournime.databinding.ActivityDetailBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class DetailActivity : AppCompatActivity() {
 
@@ -23,40 +25,61 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val animeId = intent.getIntExtra("animeId", -1)
         if (animeId != -1) {
             detailViewModel.fetchDetailAnime(animeId)
-            observerState()
+        }
+
+        observerState()
+
+        binding.btnAddFavorite.setOnClickListener {
+            detailViewModel.state.value.detailAnime?.let { anime ->
+                val genres = anime.genre
+                detailViewModel.insertAnimeFavorite(anime, genres)
+            }
         }
     }
 
     @SuppressLint("SetTextI18n")
     private fun observerState() {
-        lifecycleScope.launchWhenStarted {
-            detailViewModel.state.collect { state ->
+        lifecycleScope.launch {
+            detailViewModel.state.collectLatest { state ->
                 when {
                     state.detailAnimeLoading -> {
                         binding.progressBar.visibility = View.VISIBLE
                     }
-                    state.detailAnimeData != null -> {
+                    state.detailAnime != null -> {
                         binding.progressBar.visibility = View.GONE
                         val anime = state.detailAnime
 
                         Glide.with(this@DetailActivity)
-                            .load(anime?.images)
+                            .load(anime.images)
                             .into(binding.imgAnime)
 
-                        binding.tvTitle.text = anime?.title
-                        binding.tvInfo.text = "${anime?.type}, ${anime?.year} • ${anime?.status} • ${anime?.duration}"
-                        binding.tvScore.text = "⭐ ${anime?.score}"
-                        binding.tvRank.text = "Rank #${anime?.rank} • Popularity #${anime?.popularity}"
-                        binding.tvMembers.text = "Members ${anime?.members} • Favorites ${anime?.favorites}"
-                        binding.tvGenres.text = "Genres: ${anime?.genre?.joinToString { it.name }}"
-                        binding.tvSynopsis.text = anime?.synopsis
-                        binding.tvBackground.text = anime?.background
+                        binding.tvTitle.text = anime.title
+                        binding.tvInfo.text = "${anime.type}, ${anime.year} • ${anime.status} • ${anime.duration}"
+                        binding.tvScore.text = "⭐ ${anime.score}"
+                        binding.tvRank.text = "Rank #${anime.rank} • Popularity #${anime.popularity}"
+                        binding.tvMembers.text = "Members ${anime.members} • Favorites ${anime.favorites}"
+                        binding.tvGenres.text = "Genres: ${anime.genre?.joinToString { it.name }}"
+                        binding.tvSynopsis.text = anime.synopsis
+                        binding.tvBackground.text = anime.background
+                    } else -> {
+                    Toast.makeText(this@DetailActivity, "${state.detailAnimeError}", Toast.LENGTH_SHORT).show()
                     }
-                    else -> {
-                        Toast.makeText(this@DetailActivity, "${state.detailAnimeError}", Toast.LENGTH_SHORT).show()
+                }
+
+                when {
+                    state.insertAnimeLoading -> {
+                        binding.btnAddFavorite.isEnabled = false
+                    }
+                    state.insertAnime != null -> {
+                        binding.btnAddFavorite.isEnabled = true
+                        Toast.makeText(this@DetailActivity, "Berhasil menambahkan ke favorit!", Toast.LENGTH_SHORT).show()
+                    } else -> {
+                        binding.btnAddFavorite.isEnabled = true
                     }
                 }
             }
@@ -65,8 +88,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_details, menu)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        return super.onCreateOptionsMenu(menu)
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

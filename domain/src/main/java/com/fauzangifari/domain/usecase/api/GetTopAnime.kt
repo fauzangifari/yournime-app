@@ -18,12 +18,11 @@ class GetTopAnime(
     ) : Flow<Resource<List<Anime>>> = flow {
         try {
             emit(Resource.Loading())
-            val response = animeRepository.getTopAnime(
+            val animeList = animeRepository.getTopAnime(
                 type = type,
                 filter = filter,
                 rating = rating
             )
-            val animeList = response
             emit(Resource.Success(animeList))
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage ?: "Terjadi kesalahan yang tidak terduga"))

@@ -66,7 +66,7 @@ class HomeActivity : AppCompatActivity() {
         try {
             val intent = Intent(
                 this,
-                Class.forName("com.fauzangifari.favorite_feature.FavoriteActivity")
+                Class.forName("com.fauzangifari.favorite_feature.ui.FavoriteActivity")
             )
             startActivity(intent)
         } catch (e: ClassNotFoundException) {
