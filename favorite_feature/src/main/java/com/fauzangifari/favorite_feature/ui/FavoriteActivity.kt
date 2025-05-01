@@ -1,5 +1,7 @@
 package com.fauzangifari.favorite_feature.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -14,6 +16,7 @@ import com.fauzangifari.favorite_feature.ui.adapter.FavoriteAnimeAdapter
 import com.fauzangifari.yournime.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
+import androidx.core.net.toUri
 
 class FavoriteActivity : AppCompatActivity() {
 
@@ -56,7 +59,8 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         favoriteAdapter = FavoriteAnimeAdapter {anime ->
-            // Handle item click
+            val intent = Intent(Intent.ACTION_VIEW, "https://yournime.com/detail/${anime.id}".toUri())
+            startActivity(intent)
         }
 
         binding.rvFavoriteAnime.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -77,4 +81,10 @@ class FavoriteActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        favoriteViewModel.fetchAnimeFavorite()
+    }
+
 }

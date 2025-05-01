@@ -20,7 +20,7 @@ class FavoriteViewModel (
         fetchAnimeFavorite()
     }
 
-    private fun fetchAnimeFavorite(){
+    fun fetchAnimeFavorite(){
         viewModelScope.launch {
             getAnimeFavoriteUseCase().collect { result ->
                 when (result) {

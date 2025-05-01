@@ -37,6 +37,7 @@ class AnimeFavoriteRepositoryImpl(
 
     override suspend fun deleteAnime(malId: Int) : Int {
         animeFavoriteDao.deleteAnime(malId)
+        animeFavoriteDao.deleteCrossRef(malId)
         return malId
     }
 

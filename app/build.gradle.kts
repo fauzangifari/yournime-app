@@ -63,6 +63,6 @@ dependencies {
     implementation(libs.glide)
 
     // Android Play
-    implementation("com.google.android.play:feature-delivery:2.1.0")
+    implementation(libs.feature.delivery)
 
 }

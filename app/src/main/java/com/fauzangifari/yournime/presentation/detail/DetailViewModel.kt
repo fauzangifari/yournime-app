@@ -9,6 +9,7 @@ import com.fauzangifari.domain.common.Resource
 import com.fauzangifari.domain.model.Anime
 import com.fauzangifari.domain.model.Genre
 import com.fauzangifari.domain.usecase.api.GetAnimeById
+import com.fauzangifari.domain.usecase.local.DeleteAnimeFavorite
 import com.fauzangifari.domain.usecase.local.GetIsAnimeFavorite
 import com.fauzangifari.domain.usecase.local.InsertAnimeFavorite
 import kotlinx.coroutines.flow.update
@@ -16,11 +17,42 @@ import kotlinx.coroutines.flow.update
 class DetailViewModel(
     private val getAnimeByIdUseCase: GetAnimeById,
     private val insertAnimeFavoriteUseCase: InsertAnimeFavorite,
-    private val getIsAnimeFavorite: GetIsAnimeFavorite
+    private val getIsAnimeFavorite: GetIsAnimeFavorite,
+    private val deleteAnimeFavoriteUseCase: DeleteAnimeFavorite
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(DetailState())
     val state: StateFlow<DetailState> = _state
+
+    fun deleteAnimeFavorite(animeId: Int){
+        viewModelScope.launch {
+            deleteAnimeFavoriteUseCase(animeId).collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        _state.update { it.copy(deleteAnimeFavoriteLoading = true) }
+                    }
+                    is Resource.Success -> {
+                        _state.update {
+                            it.copy(
+                                deleteAnimeFavoriteLoading = false,
+                                deleteAnimeFavorite = result.data ?: 0,
+                                deleteAnimeFavoriteError = ""
+                            )
+                        }
+                        fetchIsAnimeFavorite(animeId)
+                    }
+                    is Resource.Error -> {
+                        _state.update {
+                            it.copy(
+                                deleteAnimeFavoriteLoading = false,
+                                deleteAnimeFavoriteError = result.message ?: "Terjadi kesalahan"
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     fun fetchIsAnimeFavorite(malId: Int) {
         viewModelScope.launch {
@@ -105,6 +137,7 @@ class DetailViewModel(
                                 insertAnimeError = ""
                             )
                         }
+                        fetchIsAnimeFavorite(anime.id)
                     }
 
                     is Resource.Error -> {
@@ -119,5 +152,4 @@ class DetailViewModel(
             }
         }
     }
-
 }

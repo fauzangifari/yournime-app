@@ -12,11 +12,11 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:padding="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
         android:fillViewport="true">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
                 android:id="@+id/tv_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Top Anime"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -54,7 +54,7 @@
                 android:id="@+id/tv_airing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="10dp"
                 android:text="Airing Anime"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -82,7 +82,7 @@
                 android:id="@+id/tv_upcoming"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="10dp"
                 android:text="Upcoming Anime"
                 android:textSize="20sp"
                 android:textStyle="bold"

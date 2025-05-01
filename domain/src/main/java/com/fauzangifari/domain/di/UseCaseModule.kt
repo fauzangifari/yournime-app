@@ -4,6 +4,7 @@ import com.fauzangifari.domain.usecase.api.GetAnimeById
 import com.fauzangifari.domain.usecase.api.GetAnimeSearch
 import com.fauzangifari.domain.usecase.api.GetAnimeUpcoming
 import com.fauzangifari.domain.usecase.api.GetTopAnime
+import com.fauzangifari.domain.usecase.local.DeleteAnimeFavorite
 import com.fauzangifari.domain.usecase.local.GetAllAnimeFavorite
 import com.fauzangifari.domain.usecase.local.GetIsAnimeFavorite
 import com.fauzangifari.domain.usecase.local.InsertAnimeFavorite
@@ -21,4 +22,5 @@ val useCaseModule = module {
     factory { InsertAnimeFavorite(get()) }
     factory { GetAllAnimeFavorite(get()) }
     factory { GetIsAnimeFavorite(get()) }
+    factory { DeleteAnimeFavorite(get()) }
 }

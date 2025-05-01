@@ -21,12 +21,21 @@
             android:exported="false" />
         <activity
             android:name=".presentation.detail.DetailActivity"
-            android:exported="false" />
+            android:label="Anime Detail"
+            android:exported="true">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="yournime.com" android:pathPrefix="/detail" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".presentation.home.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.splash.SplashActivity"
+            android:theme="@style/Theme.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

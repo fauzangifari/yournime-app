@@ -27,8 +27,12 @@ class DetailActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val animeId = intent.getIntExtra("animeId", -1)
-        if (animeId != -1) {
+        val animeIdFromFavorite = intent.data?.lastPathSegment?.toIntOrNull()
+        val animeIdFromHome = intent.getIntExtra("animeId", 0)
+
+        val animeId = animeIdFromFavorite ?: animeIdFromHome
+
+        if (animeId != null) {
             detailViewModel.fetchDetailAnime(animeId)
             detailViewModel.fetchIsAnimeFavorite(animeId)
         }
@@ -36,13 +40,13 @@ class DetailActivity : AppCompatActivity() {
         observerState()
 
         binding.btnAddFavorite.setOnClickListener {
+            val anime = detailViewModel.state.value.detailAnime ?: return@setOnClickListener
+
             if (detailViewModel.state.value.isAnimeFavorite) {
-                Toast.makeText(this, "Anime sudah ada di favorit", Toast.LENGTH_SHORT).show()
+                detailViewModel.deleteAnimeFavorite(anime.id)
             } else {
-                detailViewModel.state.value.detailAnime?.let { anime ->
-                    val genres = anime.genre
-                    detailViewModel.insertAnimeFavorite(anime, genres)
-                }
+                val genres = anime.genre
+                detailViewModel.insertAnimeFavorite(anime, genres)
             }
         }
     }
@@ -78,10 +82,8 @@ class DetailActivity : AppCompatActivity() {
 
                 if (state.isAnimeFavorite) {
                     binding.btnAddFavorite.text = "Sudah di Favorit"
-                    binding.btnAddFavorite.isEnabled = false
                 } else {
                     binding.btnAddFavorite.text = "Tambah ke Favorit"
-                    binding.btnAddFavorite.isEnabled = true
                 }
 
                 when {
