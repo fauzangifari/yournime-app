@@ -14,14 +14,14 @@
         android:layout_height="180dp"
         android:scaleType="centerCrop"
         android:background="@drawable/dummy_img"
-        android:contentDescription="Poster Anime" />
+        android:contentDescription="@string/imgAnime" />
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Anime Title"
+        android:text="@string/tvTitleAnime"
         android:textAlignment="center"
         android:textSize="14sp"
         android:textColor="@android:color/black"

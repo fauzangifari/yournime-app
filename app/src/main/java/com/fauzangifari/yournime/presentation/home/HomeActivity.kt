@@ -3,16 +3,20 @@ package com.fauzangifari.yournime.presentation.home
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.fauzangifari.yournime.R
 import com.fauzangifari.yournime.databinding.ActivityHomeBinding
 import com.fauzangifari.yournime.presentation.adapter.AiringAnimeAdapter
 import com.fauzangifari.yournime.presentation.adapter.UpcomingAnimeAdapter
 import com.fauzangifari.yournime.presentation.adapter.TopAnimeAdapter
 import com.fauzangifari.yournime.presentation.detail.DetailActivity
+import com.fauzangifari.yournime.presentation.search.SearchActivity
 import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
@@ -136,6 +140,22 @@ class HomeActivity : AppCompatActivity() {
 
         binding.rvAiringAnime.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.rvAiringAnime.adapter = airingAnimeAdapter
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_search -> {
+                val intent = Intent(this, SearchActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
 

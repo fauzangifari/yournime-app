@@ -23,6 +23,7 @@
                 android:layout_height="300dp"
                 android:scaleType="centerCrop"
                 android:background="@drawable/rounded_poster"
+                android:contentDescription="@string/imgAnime"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +42,7 @@
                 app:layout_constraintTop_toBottomOf="@id/imgAnime"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="Kimi no Na wa." />
+                android:text="@string/tvTitleAnime" />
 
             <!-- Info Ringkas -->
             <TextView
@@ -55,7 +56,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="Movie, 2016 • Finished • 1 HR 46 MIN" />
+                android:text="@string/tvInfoAnime" />
 
             <!-- Stat Box -->
             <androidx.cardview.widget.CardView
@@ -79,7 +80,7 @@
                         android:id="@+id/tvScore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="⭐ 9.01"
+                        android:text="@string/tvScoreAnime"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -87,7 +88,7 @@
                         android:id="@+id/tvRank"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rank #10 • Popularity #11"
+                        android:text="@string/tvRankAnime"
                         android:textSize="14sp"
                         android:textColor="@android:color/darker_gray"
                         android:layout_marginTop="4dp" />
@@ -96,7 +97,7 @@
                         android:id="@+id/tvMembers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Members 1,487,373 • Favorites 64,222"
+                        android:text="@string/tvMembersAnime"
                         android:textSize="14sp"
                         android:textColor="@android:color/darker_gray" />
                 </LinearLayout>
@@ -114,7 +115,7 @@
                 app:layout_constraintTop_toBottomOf="@id/statsCard"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="Genres: Drama, Romance, Supernatural, School" />
+                android:text="@string/tvGenreAnime" />
 
             <!-- Card Synopsis -->
             <androidx.cardview.widget.CardView
@@ -135,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:padding="12dp"
-                    android:text="Mitsuha Miyamizu, a high school girl, yearns to live the life of a boy in Tokyo — a dream that contrasts her present life in the countryside..." />
+                    android:text="@string/tvSynopsisAnime" />
             </androidx.cardview.widget.CardView>
 
             <!-- Card Background -->
@@ -157,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:padding="12dp"
-                    android:text="Background info about production, director, history, etc." />
+                    android:text="@string/tvBackgroundAnime" />
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
@@ -175,7 +176,7 @@
         android:id="@+id/btnAddFavorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add to Favorite"
+        android:text="@string/btnAddfavorite"
         android:textAllCaps="false"
         android:textSize="16sp"
         android:backgroundTint="@color/black"

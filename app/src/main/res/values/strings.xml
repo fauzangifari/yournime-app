@@ -2,4 +2,18 @@
     <string name="app_name">YourNime</string>
     <string name="title_favorite_feature">Favorite Feature</string>
     <string name="btnfavorite_content_description">Go to Favorites</string>
+    <string name="imgAnime">Image Anime Poster</string>
+    <string name="tvTitleAnime">Title Anime</string>
+    <string name="tvInfoAnime">Movie, 2016 • Finished • 1 HR 46 MIN</string>
+    <string name="tvScoreAnime">⭐ 9.01</string>
+    <string name="tvRankAnime">Rank #10 • Popularity #11</string>
+    <string name="tvMembersAnime">Members 1,487,373 • Favorites 64,222</string>
+    <string name="tvGenreAnime">Genres: Drama, Romance, Supernatural, School</string>
+    <string name="tvSynopsisAnime">Mitsuha Miyamizu, a high school girl, yearns to live the life of a boy in Tokyo — a dream that contrasts her present life in the countryside...</string>
+    <string name="tvBackgroundAnime">Background info about production, director, history, etc.</string>
+    <string name="btnAddfavorite">Add to Favorite</string>
+    <string name="tvTopAnime">Top Anime</string>
+    <string name="tvAiringAnime">Airing Anime</string>
+    <string name="tvUpcomingAnime">Upcoming Anime</string>
+    <string name="tvSeasonAnime">Airing • Spring 2025</string>
 </resources>

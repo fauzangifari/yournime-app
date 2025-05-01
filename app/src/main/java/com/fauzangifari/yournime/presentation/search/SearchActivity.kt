@@ -2,11 +2,14 @@ package com.fauzangifari.yournime.presentation.search
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.fauzangifari.yournime.R
 import com.fauzangifari.yournime.databinding.ActivitySearchBinding
 import com.fauzangifari.yournime.presentation.adapter.SearchAnimeAdapter
 import com.fauzangifari.yournime.presentation.detail.DetailActivity
@@ -69,6 +72,24 @@ class SearchActivity : AppCompatActivity() {
                 putExtra("animeId", anime.id)
             }
             startActivity(intent)
+        }
+
+        binding.rvSearchResult.adapter = searchAnimeAdapter
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_details, menu)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

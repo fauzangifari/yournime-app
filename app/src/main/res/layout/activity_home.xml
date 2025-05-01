@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Top Anime"
+                android:text="@string/tvTopAnime"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/black" />
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Airing Anime"
+                android:text="@string/tvAiringAnime"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/black" />
@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Upcoming Anime"
+                android:text="@string/tvUpcomingAnime"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/black" />
