@@ -36,7 +36,7 @@ class DetailViewModel(
                             it.copy(
                                 deleteAnimeFavoriteLoading = false,
                                 deleteAnimeFavorite = result.data ?: 0,
-                                deleteAnimeFavoriteError = ""
+                                deleteAnimeFavoriteError = null
                             )
                         }
                         fetchIsAnimeFavorite(animeId)
@@ -66,7 +66,7 @@ class DetailViewModel(
                             it.copy(
                                 isAnimeFavoriteLoading = false,
                                 isAnimeFavorite = result.data == true,
-                                isAnimeFavoriteError = ""
+                                isAnimeFavoriteError = null
                             )
                         }
                     }
@@ -97,7 +97,7 @@ class DetailViewModel(
                             it.copy(
                                 detailAnimeLoading = false,
                                 detailAnime = result.data?.firstOrNull(),
-                                detailAnimeError = ""
+                                detailAnimeError = null
                             )
                         }
                     }
@@ -134,7 +134,7 @@ class DetailViewModel(
                             it.copy(
                                 insertAnimeLoading = false,
                                 insertAnime =  result.data,
-                                insertAnimeError = ""
+                                insertAnimeError = null
                             )
                         }
                         fetchIsAnimeFavorite(anime.id)

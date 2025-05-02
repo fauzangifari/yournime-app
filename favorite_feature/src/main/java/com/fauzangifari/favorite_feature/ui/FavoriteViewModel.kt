@@ -37,7 +37,7 @@ class FavoriteViewModel (
                             it.copy(
                                 favoriteAnimeLoading = false,
                                 favoriteAnime = result.data ?: emptyList(),
-                                favoriteAnimeError = ""
+                                favoriteAnimeError = null
                             )
                         }
                     }

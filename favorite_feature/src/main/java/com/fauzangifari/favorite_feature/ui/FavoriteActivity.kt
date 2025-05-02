@@ -59,7 +59,7 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         favoriteAdapter = FavoriteAnimeAdapter {anime ->
-            val intent = Intent(Intent.ACTION_VIEW, "https://yournime.com/detail/${anime.id}".toUri())
+            val intent = Intent(Intent.ACTION_VIEW, "myapp://detail?id=${anime.id}".toUri())
             startActivity(intent)
         }
 

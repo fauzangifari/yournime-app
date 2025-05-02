@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fauzangifari.domain.common.Resource
 import com.fauzangifari.domain.common.model.TopAnimeFilter
-import com.fauzangifari.domain.usecase.api.GetAnimeSearch
 import com.fauzangifari.domain.usecase.api.GetAnimeUpcoming
 import com.fauzangifari.domain.usecase.api.GetTopAnime
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +14,6 @@ import kotlinx.coroutines.launch
 class HomeViewModel (
     private val getTopAnimeUseCase: GetTopAnime,
     private val getAnimeUpcomingUseCase: GetAnimeUpcoming,
-    private val getAnimeSearchUseCase: GetAnimeSearch
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(HomeState())
@@ -41,7 +39,7 @@ class HomeViewModel (
                             it.copy(
                                 airingAnimeLoading = false,
                                 airingAnime = result.data ?: emptyList(),
-                                airingAnimeError = ""
+                                airingAnimeError = null
                             )
                         }
                     }
@@ -70,7 +68,7 @@ class HomeViewModel (
                             it.copy(
                                 topAnimeLoading = false,
                                 topAnime = result.data ?: emptyList(),
-                                topAnimeError = ""
+                                topAnimeError = null
                             )
                         }
                     }
@@ -99,7 +97,7 @@ class HomeViewModel (
                             it.copy(
                                 upcomingAnimeLoading = false,
                                 upcomingAnime = result.data ?: emptyList(),
-                                upcomingAnimeError = ""
+                                upcomingAnimeError = null
                             )
                         }
                     }

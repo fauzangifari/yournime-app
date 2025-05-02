@@ -32,7 +32,7 @@ class SearchViewModel(
                             it.copy(
                                 searchLoading = false,
                                 searchAnime = result.data ?: emptyList(),
-                                searchError = ""
+                                searchError = null
                             )
                         }
                     }

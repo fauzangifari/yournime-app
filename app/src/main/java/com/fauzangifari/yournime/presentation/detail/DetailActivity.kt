@@ -27,12 +27,12 @@ class DetailActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val animeIdFromFavorite = intent.data?.lastPathSegment?.toIntOrNull()
+        val animeIdFromFavorite = intent?.data?.getQueryParameter("id")?.toIntOrNull()
         val animeIdFromHome = intent.getIntExtra("animeId", 0)
 
         val animeId = animeIdFromFavorite ?: animeIdFromHome
 
-        if (animeId != null) {
+        if (true) {
             detailViewModel.fetchDetailAnime(animeId)
             detailViewModel.fetchIsAnimeFavorite(animeId)
         }
